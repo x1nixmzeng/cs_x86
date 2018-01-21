@@ -84,18 +84,24 @@ namespace cs_x86
 
             CapstoneInstruction Instruction = new CapstoneInstruction();
 
+            ulong OldAddress = AddressRef;
             while (CodeSize > 0)
             {
-                if (CapstoneAPI.cs_disasm_iter(Handle, ref DataPtr, ref CodeSize, ref AddressRef, InstrBuffer))
-                {
-                    LastInstruction.Read(InstrBuffer);
+                if (!CapstoneAPI.cs_disasm_iter(Handle, ref DataPtr, ref CodeSize, ref AddressRef, InstrBuffer))
+                    break;
 
-                    Instruction.Address = LastInstruction.address;
-                    Instruction.Disassembly = string.Format("{0,-12}{1}", LastInstruction.mnemonic, LastInstruction.op_str);
-                    Instruction.Bytecode = new byte[LastInstruction.size];
-                    Array.Copy(LastInstruction.bytes, Instruction.Bytecode, LastInstruction.size);
-                    Callback(Instruction);
-                }
+                // Fix bug where cs_disasm_iter can get stuck in a loop but return true
+                if (AddressRef == OldAddress)
+                    break;
+                
+                LastInstruction.Read(InstrBuffer);
+
+                Instruction.Address = LastInstruction.address;
+                Instruction.Disassembly = string.Format("{0,-12}{1}", LastInstruction.mnemonic, LastInstruction.op_str);
+                Instruction.Bytecode = new byte[LastInstruction.size];
+                Array.Copy(LastInstruction.bytes, Instruction.Bytecode, LastInstruction.size);
+
+                Callback(Instruction);
             }
         }
     }
