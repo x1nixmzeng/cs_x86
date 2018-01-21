@@ -80,18 +80,18 @@ namespace cs_x86
         {
             IntPtr DataPtr = Marshal.UnsafeAddrOfPinnedArrayElement(Data, 0);
             uint CodeSize = (uint)Data.Length;
-            ulong AddressRef = Address;
+            ulong CurrentAddress = Address;
 
             CapstoneInstruction Instruction = new CapstoneInstruction();
 
-            ulong OldAddress = AddressRef;
+            ulong LastAddress = CurrentAddress;
             while (CodeSize > 0)
             {
-                if (!CapstoneAPI.cs_disasm_iter(Handle, ref DataPtr, ref CodeSize, ref AddressRef, InstrBuffer))
+                if (!CapstoneAPI.cs_disasm_iter(Handle, ref DataPtr, ref CodeSize, ref CurrentAddress, InstrBuffer))
                     break;
 
                 // Fix bug where cs_disasm_iter can get stuck in a loop but return true
-                if (AddressRef == OldAddress)
+                if (CurrentAddress == LastAddress)
                     break;
                 
                 LastInstruction.Read(InstrBuffer);
@@ -102,6 +102,8 @@ namespace cs_x86
                 Array.Copy(LastInstruction.bytes, Instruction.Bytecode, LastInstruction.size);
 
                 Callback(Instruction);
+
+                LastAddress = CurrentAddress;
             }
         }
     }
