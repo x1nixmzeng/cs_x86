@@ -8,7 +8,7 @@ namespace cs_x86
     public class Capstone : IDisposable
     {
         private CapstoneWrapper Wrapper;
-   
+
         /// <summary>
         /// Create a new instance of Capstone, setup for x86 disassembly
         /// </summary>
@@ -16,15 +16,14 @@ namespace cs_x86
         public static Capstone CreateEngine()
         {
             Capstone Instance = new Capstone();
-            
+
             Instance.Wrapper = new CapstoneWrapper();
-            Instance.Wrapper.SetOption(cs_opt_type.CS_OPT_DETAIL, cs_opt_value.CS_OPT_ON);
-            Instance.Wrapper.SetOption(cs_opt_type.CS_OPT_SYNTAX, cs_opt_value.CS_OPT_SYNTAX_INTEL);
             Instance.Wrapper.Open(cs_arch.CS_ARCH_X86, cs_mode.CS_MODE_32);
-            
+            Instance.Wrapper.SetOption(cs_opt_type.CS_OPT_SYNTAX, cs_opt_value.CS_OPT_SYNTAX_INTEL);
+
             return Instance;
         }
-        
+
         /// <summary>
         /// Cleanup the Capstone library
         /// </summary>
