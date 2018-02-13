@@ -42,7 +42,14 @@ namespace Tests.cs_x86
                 0xB9, 0xAC, 0x00, 0x00, 0x00, 0xB8, 0xCC, 0xCC, 0xCC, 0xCC, 0xF3, 0xAB
             };
 
-            Capstone.DisassembleAll(data, 0x00FBD440, OnDisassembleInstruction);
+            try
+            {
+                Capstone.DisassembleAll(data, 0x00FBD440, OnDisassembleInstruction);
+            }
+            catch (CapstoneError error)
+            {
+                Console.WriteLine(string.Format("Error: {0}", error.Message));
+            }
         }
     }
 }
