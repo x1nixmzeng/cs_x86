@@ -24,7 +24,7 @@ namespace cs_x86
         internal static extern cs_err cs_errno([In] IntPtr handle);
 
         [DllImport("capstone.dll", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern string cs_strerror([In] cs_err code);
+        internal static extern IntPtr cs_strerror([In] cs_err code);
 
         [DllImport("capstone.dll", CallingConvention = CallingConvention.Cdecl)]
         internal static extern uint cs_disasm([In] IntPtr handle, [In] byte[] code, [In] uint code_size, [In] ulong address, [In] uint count, [Out] out IntPtr insn);
