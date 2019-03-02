@@ -301,3 +301,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Generic build folder ignore (cmake & etc usage)
+[Bb]uild/
+[Bb]uild-*/
