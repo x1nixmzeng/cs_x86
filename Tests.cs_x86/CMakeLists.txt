@@ -13,7 +13,7 @@ file (GLOB_RECURSE SOURCES
 
 csharp_set_windows_forms_properties("Properties/AssemblyInfo.cs")
 
-source_group(TREE ${PROJECT_SOURCE_DIR} FILES ${SOURCES})
+source_group(TREE ${CMAKE_CURRENT_LIST_DIR} FILES ${SOURCES})
 
 add_executable(Tests_cs_x86 ${SOURCES})
 set_target_properties(Tests_cs_x86 PROPERTIES 
