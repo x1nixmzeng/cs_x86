@@ -4,6 +4,11 @@ project(Tests_cs_x86 LANGUAGES CSharp)
 # Suppress extra stuff from generated solution
 set(CMAKE_SUPPRESS_REGENERATION true)
 
+# Output all binary files into one folder
+if(NOT DEFINED CMAKE_RUNTIME_OUTPUT_DIRECTORY)
+ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${Tests_cs_x86_BINARY_DIR}/bin")
+endif()
+
 include(CSharpUtilities)
 
 file (GLOB_RECURSE SOURCES
@@ -24,8 +29,3 @@ set_target_properties(Tests_cs_x86 PROPERTIES
 set_property(TARGET Tests_cs_x86 PROPERTY DOTNET_TARGET_FRAMEWORK_VERSION "v4.5")
 
 target_link_libraries(Tests_cs_x86 PUBLIC cs_x86)
-
-# force copy capstone's compiled file to build type's folder
-add_custom_command(TARGET Tests_cs_x86 POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:capstone-shared> $<TARGET_FILE_DIR:Tests_cs_x86>
-)

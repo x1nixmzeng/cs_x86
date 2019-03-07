@@ -4,6 +4,11 @@ project(cs_x86 LANGUAGES CSharp)
 # Suppress extra stuff from generated solution
 set(CMAKE_SUPPRESS_REGENERATION true)
 
+# Output all binary files into one folder
+if(NOT DEFINED CMAKE_RUNTIME_OUTPUT_DIRECTORY)
+ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cs_x86_BINARY_DIR}/bin")
+endif()
+
 include(CSharpUtilities)
 
 file (GLOB_RECURSE SOURCES
