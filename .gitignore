@@ -305,3 +305,12 @@ $RECYCLE.BIN/
 # Generic build folder ignore (cmake & etc usage)
 [Bb]uild/
 [Bb]uild-*/
+
+# CMake
+
+CMakeFiles
+*.sln
+*.csproj
+*.vcxproj
+*.vcxproj.filters
+
