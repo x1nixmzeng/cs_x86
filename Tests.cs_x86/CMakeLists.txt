@@ -13,7 +13,6 @@ include(CSharpUtilities)
 
 file (GLOB_RECURSE SOURCES
  "*.cs"
- "App.config"
 )
 
 csharp_set_windows_forms_properties("Properties/AssemblyInfo.cs")
