@@ -23,7 +23,7 @@ add_library(cs_x86 SHARED ${SOURCES})
 
 set_target_properties(cs_x86 PROPERTIES 
  VS_DOTNET_REFERENCES
- "Microsoft.CSharp;System;System.Core;System.Xml;System.Xml.Linq;System.Data;System.Data.DataSetExtensions;System.Net.Http"
+ "Microsoft.CSharp;System;System.Core;System.Xml;System.Xml.Linq;System.Data"
 )
 
 set_property(TARGET cs_x86 PROPERTY DOTNET_TARGET_FRAMEWORK_VERSION "v4.5")

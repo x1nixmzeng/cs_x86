@@ -23,7 +23,7 @@ source_group(TREE ${CMAKE_CURRENT_LIST_DIR} FILES ${SOURCES})
 add_executable(Tests_cs_x86 ${SOURCES})
 set_target_properties(Tests_cs_x86 PROPERTIES 
  VS_DOTNET_REFERENCES
- "Microsoft.CSharp;System;System.Core;System.Xml;System.Xml.Linq;System.Data;System.Data.DataSetExtensions;System.Net.Http"
+ "Microsoft.CSharp;System;System.Core;System.Xml;System.Xml.Linq;System.Data"
 )
 
 set_property(TARGET Tests_cs_x86 PROPERTY DOTNET_TARGET_FRAMEWORK_VERSION "v4.5")
