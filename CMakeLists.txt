@@ -9,11 +9,18 @@ if(NOT DEFINED CMAKE_RUNTIME_OUTPUT_DIRECTORY)
  set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${cs_x86_BINARY_DIR}/bin")
 endif()
 
-# set capstone options
-set(CAPSTONE_BUILD_STATIC OFF CACHE BOOL "...")
-set(CAPSTONE_BUILD_TESTS OFF CACHE BOOL "...")
+# setup capstone options
+set(CAPSTONE_BUILD_STATIC OFF CACHE BOOL "..." FORCE)
+set(CAPSTONE_BUILD_TESTS OFF CACHE BOOL "..." FORCE)
+set(CAPSTONE_INSTALL OFF CACHE BOOL "..." FORCE)
+set(CAPSTONE_BUILD_CSTOOL OFF CACHE BOOL "..." FORCE)
+
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/third_party/capstone")
 
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/cs_x86")
 
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Tests.cs_x86")
+
+# copy source files to install path
+install(TARGETS capstone-shared RUNTIME DESTINATION .)
+install(TARGETS cs_x86 RUNTIME DESTINATION .)
