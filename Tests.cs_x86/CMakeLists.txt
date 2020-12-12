@@ -11,8 +11,9 @@ endif()
 
 include(CSharpUtilities)
 
-file (GLOB_RECURSE SOURCES
- "*.cs"
+file (GLOB SOURCES
+ "Properties/AssemblyInfo.cs"
+ "Program.cs"
 )
 
 csharp_set_windows_forms_properties("Properties/AssemblyInfo.cs")

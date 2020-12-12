@@ -30,13 +30,13 @@ namespace cs_x86
             address = (ulong)Marshal.ReadInt64(Data, 8);
             size = (ushort)Marshal.ReadInt16(Data, 16);
 
-            bytes = new byte[16];
-            Marshal.Copy(Data + 18, bytes, 0, 16);
+            bytes = new byte[24];
+            Marshal.Copy(Data + 18, bytes, 0, 24);
 
-            Marshal.Copy(Data + 34, buffer, 0, 32);
+            Marshal.Copy(Data + 42, buffer, 0, 32);
             GetStr(out mnemonic, 32);
             
-            Marshal.Copy(Data + 66, buffer, 0, 160);
+            Marshal.Copy(Data + 74, buffer, 0, 160);
             GetStr(out op_str, 160);
         }
     }
