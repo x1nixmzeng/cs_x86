@@ -20,20 +20,20 @@ namespace Tests.cs_x86
         {
             Console.WriteLine(Capstone.Version());
 
-            //00FBD440 55                   push        ebp  
-            //00FBD441 8B EC                mov         ebp,esp  
-            //00FBD443 6A FF                push        0FFFFFFFFh  
-            //00FBD445 68 9B 2C FC 00       push        0FC2C9Bh  
-            //00FBD44A 64 A1 00 00 00 00    mov         eax,dword ptr fs:[00000000h]  
-            //00FBD450 50                   push        eax  
-            //00FBD451 81 EC B0 02 00 00    sub         esp,2B0h  
-            //00FBD457 53                   push        ebx  
-            //00FBD458 56                   push        esi  
-            //00FBD459 57                   push        edi  
-            //00FBD45A 8D BD 44 FD FF FF    lea         edi,[ebp-2BCh]  
-            //00FBD460 B9 AC 00 00 00       mov         ecx,0ACh  
-            //00FBD465 B8 CC CC CC CC       mov         eax,0CCCCCCCCh  
-            //00FBD46A F3 AB                rep stos    dword ptr es:[edi]  
+            //00FBD440 55                   push        ebp
+            //00FBD441 8b ec                mov         ebp, esp
+            //00FBD443 6a ff                push        -1
+            //00FBD445 68 9b 2c fc 00       push        0xfc2c9b
+            //00FBD44A 64 a1 00 00 00 00    mov         eax, dword ptr fs:[0]
+            //00FBD450 50                   push        eax
+            //00FBD451 81 ec b0 02 00 00    sub         esp, 0x2b0
+            //00FBD457 53                   push        ebx
+            //00FBD458 56                   push        esi
+            //00FBD459 57                   push        edi
+            //00FBD45A 8d bd 44 fd ff ff    lea         edi, [ebp - 0x2bc]
+            //00FBD460 b9 ac 00 00 00       mov         ecx, 0xac
+            //00FBD465 b8 cc cc cc cc       mov         eax, 0xcccccccc
+            //00FBD46A f3 ab                rep stosd   dword ptr es:[edi], eax
 
             byte[] data = new byte[]
             {
