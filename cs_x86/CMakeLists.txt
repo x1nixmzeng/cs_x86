@@ -11,8 +11,13 @@ endif()
 
 include(CSharpUtilities)
 
-file (GLOB_RECURSE SOURCES
- "*.cs"
+file (GLOB SOURCES
+ "Properties/AssemblyInfo.cs"
+ "Capstone.cs"
+ "CapstoneAPI.cs"
+ "CapstoneStructs.cs"
+ "CapstoneTypes.cs"
+ "CapstoneWrapper.cs"
 )
 
 csharp_set_windows_forms_properties("Properties/AssemblyInfo.cs")
