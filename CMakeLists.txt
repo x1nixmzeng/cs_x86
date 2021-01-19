@@ -21,6 +21,7 @@ add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/cs_x86")
 
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Tests.cs_x86")
 
-# copy source files to install path
-install(TARGETS capstone-shared RUNTIME DESTINATION .)
-install(TARGETS cs_x86 RUNTIME DESTINATION .)
+# copy binary files to install path
+# copy capstone module binary without other misc files
+install(PROGRAMS $<TARGET_FILE_DIR:cs_x86>/${CMAKE_SHARED_LIBRARY_PREFIX}capstone${CMAKE_SHARED_LIBRARY_SUFFIX} DESTINATION bin)
+install(TARGETS cs_x86 RUNTIME DESTINATION bin)
