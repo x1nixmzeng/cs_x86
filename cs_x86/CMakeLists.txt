@@ -34,3 +34,8 @@ set_target_properties(cs_x86 PROPERTIES
 set_property(TARGET cs_x86 PROPERTY DOTNET_TARGET_FRAMEWORK_VERSION "v4.5")
 
 target_link_libraries(cs_x86 PUBLIC capstone-shared)
+
+# copy cs_x86 binary file to install path
+install(TARGETS cs_x86 RUNTIME DESTINATION bin)
+# copy capstone module binary without other misc files
+install(PROGRAMS $<TARGET_FILE_DIR:cs_x86>/${CMAKE_SHARED_LIBRARY_PREFIX}capstone${CMAKE_SHARED_LIBRARY_SUFFIX} DESTINATION bin)
