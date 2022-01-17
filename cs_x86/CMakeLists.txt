@@ -26,12 +26,17 @@ source_group(TREE ${CMAKE_CURRENT_LIST_DIR} FILES ${SOURCES})
 
 add_library(cs_x86 SHARED ${SOURCES})
 
+if (NOT DOTNET_TARGET_FRAMEWORK_VERSION)
+ set(DOTNET_TARGET_FRAMEWORK_VERSION "v4.5")
+endif()
+
 set_target_properties(cs_x86 PROPERTIES 
  VS_DOTNET_REFERENCES
  "Microsoft.CSharp;System;System.Core;System.Xml;System.Xml.Linq;System.Data"
+
+ DOTNET_TARGET_FRAMEWORK_VERSION ${DOTNET_TARGET_FRAMEWORK_VERSION}
 )
 
-set_property(TARGET cs_x86 PROPERTY DOTNET_TARGET_FRAMEWORK_VERSION "v4.5")
 
 target_link_libraries(cs_x86 PUBLIC capstone-shared)
 
